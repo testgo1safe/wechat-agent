@@ -1,0 +1,5 @@
+{
+  "_说明": "推荐 cookie_source=auto，程序会自动从本机 Chrome/Edge 读取。手动模式时才需填写下方两项。",
+  "__Secure-1PSID": "在此粘贴（可选）",
+  "__Secure-1PSIDTS": "在此粘贴（可选，会频繁轮换）"
+}

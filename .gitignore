@@ -1,0 +1,28 @@
+# ---- 运行数据目录（勿提交）----
+memory/
+knowledge_base/
+personality_reports/
+sticker_cache/
+WeChat/
+runtime/
+.kb_update_backup_*/
+
+# ---- Python 缓存 ----
+__pycache__/
+*.pyc
+
+# ---- 敏感配置与运行状态（含个人 wxid / Cookie）----
+autoreply_config.json
+gemini_cookies.json
+autoreply_state.json
+autoreply.log
+manifest.sha256.json
+
+# ---- 日志 ----
+*.log
+
+# ---- 系统 / 编辑器 ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,142 @@
+{
+  "_说明": "reply_to 为空 = dry-run。personas 为每个 wxid/群 id 独立的回复人格提示词。",
+  "enabled": true,
+  "persona_profile_file": "",
+  "interval": 3,
+  "settle_seconds": 15,
+  "reply_to": [],
+  "group_reply": {
+    "_说明": "活跃群按消息入队并在窗口内合并。默认必须@账号；mention_names 请填账号在群里的昵称，避免把@其他人当成自己。",
+    "enabled": true,
+    "require_mention": true,
+    "mention_names": [],
+    "reply_on_question": false,
+    "reply_on_image": false,
+    "trigger_keywords": [],
+    "settle_seconds": 6,
+    "cooldown_seconds": 12,
+    "expiry_seconds": 120,
+    "max_batch_messages": 20,
+    "max_batch_images": 3,
+    "image_context_seconds": 30
+  },
+  "personas": {},
+  "style_profiles": {
+    "_示例wxid": {
+      "relationship": "多年朋友",
+      "address": "平时直接叫名字",
+      "tone": "熟悉、直接，偶尔开玩笑",
+      "length": "多数 5～20 字，认真问题才写长",
+      "emoji": "很少使用",
+      "catchphrases": ["行", "可以", "确实"],
+      "avoid": ["亲", "收到您的消息", "首先", "其次"],
+      "examples": [
+        {
+          "user": "晚上一起吃饭吗",
+          "assistant": "行啊，几点"
+        },
+        {
+          "user": "我可能要晚点到",
+          "assistant": "没事，你慢慢来"
+        }
+      ]
+    }
+  },
+  "smart_reply": {
+    "_说明": "两阶段=先决定回不回/回复形态，再按本人风格写正文；动态节奏会扣除模型耗时。",
+    "enabled": true,
+    "two_stage": true,
+    "learn_recent_style": false,
+    "dynamic_timing": true,
+    "settle_min": 3,
+    "settle_max": 9,
+    "typing_min": 1,
+    "typing_max": 9,
+    "typing_chars_per_second": 7,
+    "max_bubbles": 2,
+    "inter_bubble_min": 0.8,
+    "inter_bubble_max": 2.2,
+    "handoff_on_risk": true,
+    "handoff_keywords": [],
+    "dedupe_enabled": true,
+    "dedupe_window_seconds": 600,
+    "dedupe_similarity": 0.88,
+    "dedupe_min_chars": 6,
+    "regenerate_on_duplicate": true,
+    "grounding_guard_enabled": true,
+    "suppress_unprompted_followups": true
+  },
+  "memory": {
+    "_说明": "仅白名单会话自动把较早原文增量折叠到长期摘要；最近 keep_recent 条始终保留原文。",
+    "keep_recent": 20,
+    "history_window": 120,
+    "summary_batch": 10,
+    "whitelist_only": true
+  },
+  "knowledge_base": {
+    "_说明": "本地知识库默认关闭；每份文档还需单独授权给白名单会话。云模型默认不能接收检索片段。",
+    "enabled": false,
+    "allow_cloud": false,
+    "max_hits": 3,
+    "max_chars": 1800
+  },
+  "reply_all": false,
+  "include_system": false,
+  "model": "qwen2.5:7b",
+  "llm": {
+    "provider": "ollama",
+    "model": "qwen2.5:7b",
+    "api_key": "",
+    "base_url": "",
+    "temperature": 0.5,
+    "dns_fallback": {
+      "enabled": true,
+      "servers": [
+        "223.5.5.5",
+        "1.1.1.1"
+      ],
+      "probe_timeout": 1.5,
+      "dns_timeout": 2.0,
+      "cache_seconds": 600
+    }
+  },
+  "vision": {
+    "_说明": "识图：对方发图片时用 Gemini 等多模态模型。推荐 gemini-flash-latest + Bearer Key。",
+    "enabled": false,
+    "provider": "gemini",
+    "model": "gemini-flash-latest",
+    "api_key": "",
+    "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+    "temperature": 0.4
+  },
+  "image_decrypt": {
+    "_说明": "V2 .dat 图片解密密钥。运行 python find_image_key.py 自动提取（需先在微信里查看 2-3 张图片）。",
+    "image_aes_key": "",
+    "image_xor_key": 86
+  },
+  "stickers": {
+    "enabled": false,
+    "learn_from_favorites": true,
+    "catalog_limit": 24,
+    "classify_per_sync": 6,
+    "sync_hours": 6,
+    "probability": 0.12,
+    "strong_probability": 0.35,
+    "cooldown_seconds": 7200,
+    "max_per_day": 3,
+    "max_message_chars": 30
+  },
+  "image_gen": {
+    "_说明": "生图 mode=smart。provider=gemini_web；cookie_source=auto 会优先用本地登录态通过请求自动续期，仅首次授权或登录态彻底失效时需要调试 Chrome。",
+    "enabled": false,
+    "provider": "gemini_web",
+    "mode": "smart",
+    "cookie_file": "gemini_cookies.json",
+    "cookie_source": "auto",
+    "cdp_port": 9222,
+    "cookie_sync_interval": 300,
+    "prompt_prefix": "请用 AI 生成一张图片：",
+    "poll_seconds": 120,
+    "send_text_with_image": false
+  }
+}
